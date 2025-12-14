@@ -167,9 +167,13 @@ CONTENTSTACK_ENVIRONMENT=
 
 ## Lighthouse Baseline Scores
 
-_TODO: Record scores after running Lighthouse tests_
+Tested via [PageSpeed Insights](https://pagespeed.web.dev/) on Mobile.
 
 | Page | Performance | Accessibility | Best Practices | SEO |
 |------|-------------|---------------|----------------|-----|
-| Home | | | | |
-| Car Detail | | | | |
+| Home | 100 | 95 | 100 | 100 |
+| Car Detail | 100 | 95 | 100 | 100 |
+
+**Reports:**
+- [Home page](https://pagespeed.web.dev/analysis/https-diecast-cstask-vercel-app/qknyypjjo2?form_factor=mobile)
+- [Car Detail page](https://pagespeed.web.dev/analysis/https-diecast-cstask-vercel-app-cars-beatnik-bandit-1971/uit2lnk4j2?form_factor=mobile)
