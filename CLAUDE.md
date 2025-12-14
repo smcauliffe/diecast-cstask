@@ -116,3 +116,60 @@ CONTENTSTACK_API_KEY=
 CONTENTSTACK_DELIVERY_TOKEN=
 CONTENTSTACK_ENVIRONMENT=
 ```
+
+---
+
+## Deployment
+
+**Live site:** https://diecast-cstask.vercel.app/
+
+**GitHub repo:** https://github.com/smcauliffe/diecast-cstask
+
+---
+
+## Issues Encountered & Solutions
+
+### 1. Contentstack CLI Login Failed
+**Issue:** Explorer (free) account couldn't authenticate via `csdx auth:login`
+**Solution:** Use UI-based import instead of CLI. The UI import works fine for content types and entries.
+
+### 2. Content Type Import Error: "schema is not iterable"
+**Issue:** Importing content type JSON via UI failed with 422 error
+**Solution:** Remove the outer `content_type` wrapper from JSON. The UI expects the unwrapped format (starts directly with `title`, `uid`, `schema`).
+
+### 3. API Error: "We can't find that Stack"
+**Issue:** Contentstack SDK returned stack not found error
+**Solution:** Account was on EU region (eu-app.contentstack.com) but SDK defaults to NA. Add `region: Region.EU` to SDK config.
+
+### 4. Empty Results from API
+**Issue:** API returned empty `entries: []` even after creating content
+**Solution:** Entries must be **published** before they appear in the Delivery API. Saved/draft entries don't show.
+
+### 5. TypeScript Build Error: "Expected 3-4 arguments"
+**Issue:** `where('slug', slug)` failed during `next build` (but worked in dev mode)
+**Cause:** Dev mode (Turbopack) is lenient with TypeScript; build mode runs full type checking
+**Solution:** Use `equalTo('slug', slug)` instead of `where()`. The Contentstack SDK uses `equalTo()` for equality queries.
+
+### 6. Vercel 404 After Successful Build
+**Issue:** Build logs showed success, routes generated, but site returned 404
+**Solution:** Add `vercel.json` with `{"framework": "nextjs"}` inside the `diecast-blog` folder (the root directory). This explicitly tells Vercel how to handle the output.
+
+### 7. Vercel Not Auto-Deploying
+**Issue:** Pushes to GitHub didn't trigger Vercel deployments
+**Cause:** Vercel was connected to wrong repo (repo was renamed during setup)
+**Solution:** Update git remote to match Vercel's connected repo: `git remote set-url origin <correct-repo-url>`
+
+### 8. Monorepo Root Directory Setup
+**Issue:** Next.js app is in `diecast-blog/` subdirectory, not repo root
+**Solution:** In Vercel project Settings → General → Root Directory, set to `diecast-blog`. Also needed `vercel.json` in that directory.
+
+---
+
+## Lighthouse Baseline Scores
+
+_TODO: Record scores after running Lighthouse tests_
+
+| Page | Performance | Accessibility | Best Practices | SEO |
+|------|-------------|---------------|----------------|-----|
+| Home | | | | |
+| Car Detail | | | | |
