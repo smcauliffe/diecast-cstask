@@ -34,7 +34,7 @@ export async function getCarBySlug(slug: string): Promise<Car | null> {
     .contentType('car')
     .entry()
     .query()
-    .where('slug', slug)
+    .where('slug', '==', slug)
     .find();
 
   const entries = result.entries as unknown as Car[];
