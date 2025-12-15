@@ -13,6 +13,11 @@ Goal: Compare Lighthouse scores and developer experience between the two approac
 
 ---
 
+## Claude Instructions
+- **Never push to git** - Only the user pushes. Claude can commit but must wait for the user to push.
+
+---
+
 ## Contentstack Notes
 
 ### Content Type JSON Import Format
