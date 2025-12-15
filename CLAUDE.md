@@ -95,17 +95,21 @@ Fields:
 ```
 diecast/
 ├── CLAUDE.md                          # This file
-├── contentstack-seed/
-│   └── content_types/
-│       └── car.json                   # Content type definition
-└── diecast-blog/                      # Next.js app (to be created)
-    ├── app/
-    │   ├── globals.css
-    │   ├── layout.tsx
-    │   ├── page.tsx
-    │   └── cars/[slug]/page.tsx
-    └── lib/
-        └── contentstack.ts
+├── seed/
+│   └── contentstack/
+│       ├── content_types/
+│       │   └── car.json               # Content type definition
+│       └── entries/
+│           └── car/                   # Sample car entries
+├── diecast-blog/                      # Contentstack + Next.js app (Vercel)
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── cars/[slug]/page.tsx
+│   └── lib/
+│       └── contentstack.ts
+└── diecast-eds/                       # Adobe EDS app (to be built)
 ```
 
 ---
