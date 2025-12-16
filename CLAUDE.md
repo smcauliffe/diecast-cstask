@@ -1,9 +1,9 @@
 # Diecast Collection Project
 
 ## Project Overview
-A comparison of two headless CMS approaches for a vintage diecast car blog:
-1. **Contentstack + Next.js + Vercel** (building first)
-2. **Adobe Document Authoring + Edge Delivery Services** (building second)
+This is the **Contentstack + Next.js + Vercel** implementation of a vintage diecast car blog.
+
+The Adobe EDS version lives in a separate repo: [diecast-eds](https://github.com/smcauliffe/diecast-eds)
 
 Goal: Compare Lighthouse scores and developer experience between the two approaches.
 
@@ -98,23 +98,25 @@ Fields:
 ## Project Structure
 
 ```
-diecast/
+diecast-cstack/
 ├── CLAUDE.md                          # This file
-├── seed/
+├── seed/                              # Contentstack backup (excluded from deploy)
 │   └── contentstack/
 │       ├── content_types/
 │       │   └── car.json               # Content type definition
 │       └── entries/
 │           └── car/                   # Sample car entries
-├── diecast-blog/                      # Contentstack + Next.js app (Vercel)
-│   ├── app/
-│   │   ├── globals.css
-│   │   ├── layout.tsx
-│   │   ├── page.tsx
-│   │   └── cars/[slug]/page.tsx
-│   └── lib/
-│       └── contentstack.ts
-└── diecast-eds/                       # Adobe EDS app (to be built)
+├── app/                               # Next.js app router
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── cars/[slug]/page.tsx
+├── lib/
+│   └── contentstack.ts                # Contentstack SDK client
+├── public/                            # Static assets
+├── package.json
+├── vercel.json
+└── .vercelignore                      # Excludes seed/ and CLAUDE.md from deploy
 ```
 
 ---
@@ -161,16 +163,12 @@ CONTENTSTACK_ENVIRONMENT=
 
 ### 6. Vercel 404 After Successful Build
 **Issue:** Build logs showed success, routes generated, but site returned 404
-**Solution:** Add `vercel.json` with `{"framework": "nextjs"}` inside the `diecast-blog` folder (the root directory). This explicitly tells Vercel how to handle the output.
+**Solution:** Add `vercel.json` with `{"framework": "nextjs"}` in the repo root.
 
 ### 7. Vercel Not Auto-Deploying
 **Issue:** Pushes to GitHub didn't trigger Vercel deployments
 **Cause:** Vercel was connected to wrong repo (repo was renamed during setup)
 **Solution:** Update git remote to match Vercel's connected repo: `git remote set-url origin <correct-repo-url>`
-
-### 8. Monorepo Root Directory Setup
-**Issue:** Next.js app is in `diecast-blog/` subdirectory, not repo root
-**Solution:** In Vercel project Settings → General → Root Directory, set to `diecast-blog`. Also needed `vercel.json` in that directory.
 
 ---
 
