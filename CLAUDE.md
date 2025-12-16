@@ -84,6 +84,12 @@ const stack = Contentstack.stack({
 ### Publishing Required
 Entries must be **published** before they appear via the Delivery API. Unpublished entries won't show up.
 
+### Manual Redeployment Required
+The site uses Static Site Generation (SSG) - pages are built at deploy time and cached. After publishing content changes in Contentstack, you must manually redeploy on Vercel:
+- Go to Vercel → Deployments → ... → Redeploy
+
+Time-based ISR or webhook revalidation could automate this, but manual redeployment is sufficient for this comparison project.
+
 ### Content Type: Car
 Fields:
 - `title` (text, required) - Car name
