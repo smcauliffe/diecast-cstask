@@ -1,0 +1,5 @@
+# Contentstack seed data (not needed for deployment)
+seed/
+
+# Project documentation
+CLAUDE.md
