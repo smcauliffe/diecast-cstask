@@ -14,11 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-        <header className="header">
-          <div className="header-content">
-            <h1>
-              <Link href="/">Diecast Collection</Link>
+      <body className="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-200 leading-relaxed">
+        <header className="bg-gray-100 dark:bg-neutral-800 border-b border-gray-200 dark:border-neutral-700 px-8 py-4">
+          <div className="max-w-[1200px] mx-auto">
+            <h1 className="text-2xl font-bold">
+              <Link href="/" className="hover:text-red-600">
+                Diecast Collection
+              </Link>
             </h1>
           </div>
         </header>
